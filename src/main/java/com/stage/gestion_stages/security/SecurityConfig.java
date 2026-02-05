@@ -37,11 +37,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/candidatures").hasRole("ETUDIANT") // Postuler : ETUDIANT
                         .requestMatchers(HttpMethod.GET, "/api/candidatures/etudiant/**").hasRole("ETUDIANT") // Voir ses candidatures : ETUDIANT
 
-                        .requestMatchers(HttpMethod.GET, "/api/candidatures/offre/**").hasAnyRole("ENTREPRISE", "ADMIN") // Voir candidatures d'une offre : ENTREPRISE ou ADMIN
-                        .requestMatchers(HttpMethod.PUT, "/api/candidatures/*/statut").hasAnyRole("ENTREPRISE", "ADMIN") // Changer statut : ENTREPRISE ou ADMIN
+                        .requestMatchers(HttpMethod.GET, "/api/candidatures/offre/**").hasRole("ENTREPRISE") // Voir candidatures d'une offre : ENTREPRISE ou ADMIN
+                        .requestMatchers(HttpMethod.PUT, "/api/candidatures/*/statut").hasRole("ENTREPRISE") // Changer statut : ENTREPRISE ou ADMIN
 
-                        .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN") // Liste users : ADMIN
-                        .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN") // Supprimer user : ADMIN
+
 
                         // Toutes les autres routes nécessitent une authentification (peu importe le rôle)
                         .anyRequest().authenticated()

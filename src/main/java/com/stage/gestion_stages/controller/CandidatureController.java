@@ -96,13 +96,6 @@ public class CandidatureController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nouvelleCandidature); // ← CORRECTION
     }
 
-    // GET - Toutes les candidatures
-    @GetMapping
-    public ResponseEntity<List<Candidature>> obtenirTousLesCandidatures() {
-        List<Candidature> candidatures = appRepository.findAll();
-        return ResponseEntity.ok(candidatures);
-    }
-
     // GET - Candidature par ID
     @GetMapping("/{id}")
     public ResponseEntity<Candidature> obtenirCandidatureParId(@PathVariable Long id) {

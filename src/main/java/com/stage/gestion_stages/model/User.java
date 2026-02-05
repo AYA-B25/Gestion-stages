@@ -38,8 +38,7 @@ public class User {
 
     public enum Role {
         ETUDIANT,
-        ENTREPRISE,
-        ADMIN
+        ENTREPRISE
     }
 
     @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)

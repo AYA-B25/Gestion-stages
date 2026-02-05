@@ -29,14 +29,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(nouveauUser); // 201 Created
     }
 
-    // 2. Obtenir tous les utilisateurs - GET /api/users
-    @GetMapping
-    public ResponseEntity<List<User>> obtenirTousLesUtilisateurs() {
-        List<User> users = userRepository.findAll();
-        return ResponseEntity.ok(users); // 200 OK
-    }
-
-    // 3. Obtenir un utilisateur par ID - GET /api/users/{id}
+    // Obtenir un utilisateur par ID - GET /api/users/{id}
     @GetMapping("/{id}")
     public ResponseEntity<User> obtenirUtilisateurParId(@PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
@@ -48,7 +41,7 @@ public class UserController {
         }
     }
 
-    // 4. Obtenir un utilisateur par email - GET /api/users/email/{email}
+    // Obtenir un utilisateur par email - GET /api/users/email/{email}
     @GetMapping("/email/{email}")
     public ResponseEntity<User> obtenirUtilisateurParEmail(@PathVariable String email) {
         Optional<User> user = userRepository.findByEmail(email);
@@ -60,7 +53,7 @@ public class UserController {
         }
     }
 
-    // 5. Supprimer un utilisateur - DELETE /api/users/{id}
+    // Supprimer un utilisateur - DELETE /api/users/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> supprimerUtilisateur(@PathVariable Long id) {
         if (userRepository.existsById(id)) {
