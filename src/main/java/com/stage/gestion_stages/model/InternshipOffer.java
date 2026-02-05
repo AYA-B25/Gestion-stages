@@ -2,6 +2,7 @@ package com.stage.gestion_stages.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import java.time.LocalDate;
@@ -29,6 +30,7 @@ public class InternshipOffer {
     @Column(nullable = false, columnDefinition = "TEXT") // NOT NULL, texte long
     private String description;
 
+    @NotBlank(message = "Le nom de l'entreprise est obligatoire")
     @Column(nullable = false, length = 150)
     private String entreprise;
 
@@ -36,7 +38,7 @@ public class InternshipOffer {
     @Column(nullable = false, length = 100)
     private String ville;
 
-    @NotBlank(message = "La durée est obligatoire")
+    @NotNull(message = "La durée est obligatoire")
     @Column(nullable = false) // Durée en mois
     private Integer duree;
 
@@ -46,7 +48,7 @@ public class InternshipOffer {
     @Column(columnDefinition = "TEXT") // Texte long, peut être NULL
     private String competencesRequises;
 
-    @NotBlank(message = "La date de début est obligatoire")
+    @NotNull(message = "La date de début est obligatoire")
     @Column(nullable = false)
     private LocalDate dateDebut; // Date de début du stage
 

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import com.stage.gestion_stages.dto.UserDTO;
 import java.util.Optional;
 
 @RestController
@@ -47,6 +48,7 @@ public class AuthController {
         // Retourner la réponse avec le token
         AuthResponse response = new AuthResponse(
                 token,
+                newUser.getId(),
                 newUser.getEmail(),
                 newUser.getNom(),
                 newUser.getPrenom(),
@@ -81,6 +83,7 @@ public class AuthController {
         // Retourner la réponse avec le token
         AuthResponse response = new AuthResponse(
                 token,
+                user.getId(),
                 user.getEmail(),
                 user.getNom(),
                 user.getPrenom(),
@@ -109,7 +112,15 @@ public class AuthController {
         if (user.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisateur introuvable");
         }
+        // Créer un DTO sans le mot de passe
+        UserDTO userDTO = new UserDTO(
+                user.get().getId(),
+                user.get().getEmail(),
+                user.get().getNom(),
+                user.get().getPrenom(),
+                user.get().getRole().name() // Convertir Enum en String
+        );
 
-        return ResponseEntity.ok(user.get());
+        return ResponseEntity.ok(userDTO);
     }
 }

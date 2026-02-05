@@ -1,7 +1,6 @@
 package com.stage.gestion_stages.dto;
 
-public class AuthResponse {
-    private String token;
+public class UserDTO {
     private Long id;
     private String email;
     private String nom;
@@ -9,8 +8,7 @@ public class AuthResponse {
     private String role;
 
     // Constructeur
-    public AuthResponse(String token, Long id, String email, String nom, String prenom, String role) {
-        this.token = token;
+    public UserDTO(Long id, String email, String nom, String prenom, String role) {
         this.id = id;
         this.email = email;
         this.nom = nom;
@@ -19,9 +17,6 @@ public class AuthResponse {
     }
 
     // Getters et Setters
-    public String getToken() { return token; }
-    public void setToken(String token) { this.token = token; }
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

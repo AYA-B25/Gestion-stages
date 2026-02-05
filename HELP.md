@@ -5,6 +5,14 @@ The following was discovered as part of building this project:
 
 # Getting Started
 
+### Configuration
+
+Avant de lancer l'application, créez un fichier `.env` avec :
+```
+JWT_SECRET=VotreCleSecrete256Bits
+JWT_EXPIRATION=86400000
+```
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

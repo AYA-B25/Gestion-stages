@@ -24,7 +24,8 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         // Routes publiques (accessibles sans authentification)
-                        .requestMatchers("/api/auth/**").permitAll() // Login, Register
+                        .requestMatchers("/api/auth/login", "/api/auth/register").permitAll() // Login, Register UNIQUEMENT
+                        .requestMatchers("/api/auth/me").authenticated() // Me endpoint nécessite authentification
                         .requestMatchers(HttpMethod.GET, "/api/offers").permitAll() // Voir les offres (public)
                         .requestMatchers(HttpMethod.GET, "/api/offers/**").permitAll() // Détails d'une offre (public)
 

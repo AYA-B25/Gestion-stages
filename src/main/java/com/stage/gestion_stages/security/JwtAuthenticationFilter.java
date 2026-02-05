@@ -57,10 +57,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 // Extraire le rôle du token
                 String role = jwtUtil.extractRole(jwt);
+                System.out.println("🔍 DEBUG - Username: " + username);
+                System.out.println("🔍 DEBUG - Rôle extrait du JWT: '" + role + "'");
 
                 // Créer une autorité Spring Security avec le rôle
                 SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
-
+                System.out.println("🔍 DEBUG - Autorité créée: '" + authority.getAuthority() + "'");
                 // Créer un objet d'authentification
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         username, // Principal (l'email de l'utilisateur)
@@ -73,6 +75,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 // Définir l'authentification dans le contexte Spring Security
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+                System.out.println("✅ DEBUG - Authentification réussie pour: " + username);
+            } else {
+                System.out.println("❌ DEBUG - Token invalide pour: " + username);
+
             }
         }
 

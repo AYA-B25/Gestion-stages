@@ -17,3 +17,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secrets ###
+.env
+*.env
